@@ -99,9 +99,7 @@ RUN rm -rf packages
 RUN /usr/local/snap/bin/snappy-conf /usr/bin/python3.6
 RUN cd /root/.snap/snap-python/snappy/ && \
     python setup.py install
-# 
-RUN ln -s /root/.snap/snap-python/snappy /root/miniconda3/envs/snapEnv/lib/python3.6/site-packages
-
+    
 ###################################
 #   Expose and Run Jupyter NB
 ###################################
