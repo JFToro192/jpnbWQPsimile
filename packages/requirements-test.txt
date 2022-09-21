@@ -1,0 +1,4 @@
+hda==0.2.2
+importlib-resources==5.4.0
+sodapy==2.2.0
+tqdm==4.64.1
