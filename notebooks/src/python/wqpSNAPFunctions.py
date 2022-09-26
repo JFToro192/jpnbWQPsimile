@@ -76,8 +76,8 @@ def inputParameters(sensor_input, sensor_output):
         'out_wqp_no_clip':os.path.join(sensor_output,'wqp_no_clip'),
         'out_wqp_cloud':os.path.join(sensor_output,'wqp_cloud_mask'),
         'out_wqp_no_mask':os.path.join(sensor_output,'wqp_no_mask'),
-        'in_parameters': '.\in\data\satellite_imagery\wqp_parameters',
-        'vectorFile':'.\\vector\simile_laghi\simile_laghi.shp',
+        'in_parameters': f'./in/satellite_imagery/wqp_parameters',
+        'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
     }
 
     return cwd_path
@@ -91,11 +91,11 @@ def extractTemp(name, df_temp):
     date = name.split('_')[7]
     round_min = str(math.floor(int(date[11:13])/10)*10)
     if round_min == '0':
-        dateFormat = "%s/%s/%s %s:%s" % (date[0:4],date[4:6],date[6:8],date[9:11],'00')
+        dateFormat = "%s-%s-%s %s:%s" % (date[0:4],date[4:6],date[6:8],date[9:11],'00')
     else:
-        dateFormat = "%s/%s/%s %s:%s" % (date[0:4],date[4:6],date[6:8],date[9:11],round_min)
-    values = df_temp.loc[df_temp['Data-Ora']==dateFormat]
-    t = values.iloc[0][' Medio']
+        dateFormat = "%s-%s-%s %s:%s" % (date[0:4],date[4:6],date[6:8],date[9:11],round_min)
+    values = df_temp.loc[df_temp['Data']==dateFormat]
+    t = values.iloc[0]['Valore']
     if t < 0:
         #Error on the processing for negative
         t = 0.1
