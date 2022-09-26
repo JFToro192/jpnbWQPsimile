@@ -77,7 +77,7 @@ RUN conda install -c conda-forge nb_conda_kernels ipykernel
 
 # Create SNAP processing env
 COPY ./packages ./packages
-RUN conda env create -f packages/environment.yml
+RUN conda env create -f packages/environment-test.yml
 
 # Add the environment to the kernels of jupyterlab
 SHELL ["conda","run","-n","snapEnv","/bin/bash","-c"]
