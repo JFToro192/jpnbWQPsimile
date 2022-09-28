@@ -14,22 +14,24 @@ class wqp:
 
     # Extract the metadata of the datasets    
     def __init__(self, path):
-        temp_path = path.split('\\')
+        temp_path = path.split('/')
         temp_path = '/'.join(temp_path)
-        temp_path = path.split('\\')
+        temp_path = path.split('/')
         name = temp_path[-1].split('.')[0]
         self.path = path
-        self.name = name
+        self.name = name        
         self.sensor = name.split('/')[-1].split('_')[0]
-        self.typology = name.split('_')[1]
-        self.crs = name.split('_')[2]
         # Sentinel-3 
         if (self.sensor in ['S3','S3A','S3B']):
-            date_format = "%Y%m%dT%H%M%S" 
+            date_format = "%Y%m%dT%H%M%S"
+            self.typology = name.split('_')[1]
             if name.split('_')[-2] != 'Oa':
                 self.date = datetime.strptime(name.split('_')[-2], date_format)
+                self.crs = name.split('_')[2]
             else:
                 self.date = datetime.strptime(name.split('_')[2], date_format)
+                self.crs = name.split('_')[1]
+                
         # Landsat-8
         elif (self.sensor in ['L8']):
             date_format = "%Y%m%d"

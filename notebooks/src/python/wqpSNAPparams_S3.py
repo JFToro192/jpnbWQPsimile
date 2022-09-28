@@ -431,6 +431,15 @@ params_bandExtractor_oa = [
     }
 ]
 
+params_bandExtractor_oa_18 = [
+    {
+        'operator':'bandsExtractorOp'
+    },
+    { 
+        "sourceBandNames":"Oa18_radiance",
+    }
+]
+
 # Extract mask layers
 params_bandExtractor_masks = [
     {

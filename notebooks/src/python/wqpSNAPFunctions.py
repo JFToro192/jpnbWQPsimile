@@ -66,19 +66,32 @@ class snapProduct:
 def inputParameters(sensor_input, sensor_output):
     # Define the paths to the input and output directories. e.g. '.\in\data\S3A'; '.\out\data\S3A'
     #Define the working folders path
-    cwd_path = {
-        'in':sensor_input,
-        'out':sensor_output,
-        'out_masks':os.path.join(sensor_output,'masks'),
-        'out_oa':os.path.join(sensor_output,'oa'),
-        'out_rrs':os.path.join(sensor_output,'rrs'),
-        'out_wqp':os.path.join(sensor_output,'wqp'),
-        'out_wqp_no_clip':os.path.join(sensor_output,'wqp_no_clip'),
-        'out_wqp_cloud':os.path.join(sensor_output,'wqp_cloud_mask'),
-        'out_wqp_no_mask':os.path.join(sensor_output,'wqp_no_mask'),
-        'in_parameters': f'./in/satellite_imagery/wqp_parameters',
-        'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
-    }
+    sensor = sensor_input.split('/')[-1]
+    if sensor=='S3':
+        cwd_path = {
+            'in':sensor_input,
+            'out':sensor_output,
+            'out_masks':os.path.join(sensor_output,'masks'),
+            'out_oa':os.path.join(sensor_output,'oa'),
+            'out_rrs':os.path.join(sensor_output,'rrs'),
+            'out_wqp':os.path.join(sensor_output,'wqp'),
+            'out_wqp_no_clip':os.path.join(sensor_output,'wqp_no_clip'),
+            'out_wqp_cloud':os.path.join(sensor_output,'wqp_cloud_mask'),
+            'out_wqp_no_mask':os.path.join(sensor_output,'wqp_no_mask'),
+            'in_parameters': f'./in/satellite_imagery/wqp_parameters',
+            'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
+        }
+    elif sensor=='L8':
+        cwd_path = {
+            'in':sensor_input,
+            'out':sensor_output,
+            'out_masks':os.path.join(sensor_output,'masks'),
+            'out_wqp':os.path.join(sensor_output,'wqp'),
+            'out_wqp_high_clouds':os.path.join(sensor_output,'wqp_high_clouds'),
+            'out_wqp_mid_high_clouds':os.path.join(sensor_output,'wqp_mid_high_clouds'),
+            'in_parameters': f'./in/satellite_imagery/wqp_parameters',
+            'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
+        }        
 
     return cwd_path
 
