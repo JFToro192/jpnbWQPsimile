@@ -1,0 +1,55 @@
+<style>
+/* Config settings*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body{
+   font-family: 'Open Sans';
+}
+
+/* Styling the Jupyter Notebook GUI*/
+#ipython_notebook::before{
+    content:""
+   }
+
+/* #ipython_notebook img{
+display:none;
+} */
+
+/*Styling the elements in the Jupyter Notebook*/
+h1 {
+    color: white;
+    border: 1.5px solid rgb(46, 96, 177);
+    padding: 8px 12px;
+    background: rgba(37, 107, 182, 0.5);
+    position: static;
+}
+
+h2 {
+    color: white;
+    border: 1.5px solid rgb(46, 170, 177);
+    padding: 8px 12px;
+    background: rgba(46, 170, 177, 0.5);
+    position: static;
+}
+
+h3 {
+    color: white;
+    border: 1.5px solid rgb(192, 119, 255);
+    padding: 8px 12px;
+    background: rgba(170, 74, 255, 0.5);
+    position: static;
+}
+
+.note {
+    background-color: rgba(0, 255, 162, 0.503);
+}
+
+.warning {
+    background-color: rgba(246, 255, 0, 0.503);
+}
+
+.important {
+    background-color: rgba(255, 187, 0, 0.503);
+}
+
+
+</style>

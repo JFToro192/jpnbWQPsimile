@@ -1,0 +1,12 @@
+setup/secrets_API.txt
+setup/secrets.json
+notebooks/meteo/2019.csv
+notebooks/meteo/2020.csv
+notebooks/meteo/2021.csv
+notebooks/meteo/2022.csv
+notebooks/in
+out
+
+.env
+
+.ipynb_checkpoints

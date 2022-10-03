@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  datascience-demo:
+    # image: jupyter/datascience-notebook
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    volumes:
+    # TODO: setup the working folder for the input and output of the images
+      - ${DATA_DIR}:/home/jovyan/work
+    ports:
+      - ${JUPYTER_PORT}:8888
+    container_name: datascience-demo-snap
+  # TODO: Create a separate service for the documentation
+  
