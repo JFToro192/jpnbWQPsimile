@@ -1,7 +1,7 @@
 ###################################
 #   ESA-SNAP mundialis base image
 ###################################
-FROM mundialis/esa-snap:ubuntu
+FROM mundialis/esa-snap:8.0-ubuntu
 
 ###################################
 #   Jupyterlab setup
