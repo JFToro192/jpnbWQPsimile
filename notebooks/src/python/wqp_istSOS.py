@@ -19,7 +19,7 @@ class istSOSClient:
             'SATELLITE_CHL_TURB_CO_WEST',
             'SATELLITE_TEMP_CO_EAST',
             'SATELLITE_TEMP_CO_NORTH',
-            'SATELLITE_TEMP_CO_WEST'
+            'SATELLITE_TEMP_CO_WEST',
         ],
         'LUGANO': [
             'SATELLITE_CHL_TURB_LUG_NORTH',

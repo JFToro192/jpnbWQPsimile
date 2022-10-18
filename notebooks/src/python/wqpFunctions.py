@@ -1,4 +1,5 @@
 import os
+import math
 import csv
 from datetime import datetime
 import numpy as np
@@ -9,6 +10,7 @@ from rasterio.merge import merge
 import rasterio.mask
 from rasterio.io import MemoryFile
 from rasterstats import zonal_stats, point_query
+import matplotlib.pyplot as plt
 
 class wqp:
 
@@ -354,4 +356,23 @@ class wqp:
         dataset.write(data,1)
 
         return dataset
-            
+    
+# Function to normalize the grid values
+def normalize(array):
+    """Normalizes numpy arrays into scale 0.0 - 1.0"""
+    array_min, array_max = np.nanmin(array), np.nanmax(array)
+    return ((array - array_min)/(array_max - array_min))
+
+def plotBandsMosaic(src):
+    num_bands = src.count
+    n_cols = 3
+    n_rows = math.ceil(num_bands/n_cols)
+    fig, axs = plt.subplots(n_rows, 3, figsize=(12,n_rows*3), sharey = True)
+    n = 1
+    for r in range(1,n_rows+1):
+        for c in range(1,n_cols+1):
+            band = axs[r-1,c-1].imshow(src.read(n), cmap='viridis')
+            axs[r-1,c-1].set_title(f'Band - {n}')
+            fig.colorbar(band, ax=axs[r-1,c-1])
+            fig.tight_layout(pad=1.0)
+            n = n + 1
