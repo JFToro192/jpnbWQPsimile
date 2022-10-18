@@ -30,6 +30,9 @@ COPY setup/requirements.txt /tmp/base_requirements.txt
 ## When not running behind a firewall, uncomment the next two lines
 
 # Uncomment the following lines if required to update snap
+RUN apt install locales
+RUN locale-gen en_US.UTF-8
+RUN dpkg-reconfigure locales
 COPY setup/update-snap.sh /tmp/update-snap.sh
 RUN bash /tmp/update-snap.sh
 
