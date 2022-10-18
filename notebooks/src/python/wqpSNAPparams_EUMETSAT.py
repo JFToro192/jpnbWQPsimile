@@ -1,5 +1,5 @@
 cwd_path = {
-    'vectorFile':'.\\vector\simile_laghi\simile_laghi.shp',
+    'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
 }
 
 """
