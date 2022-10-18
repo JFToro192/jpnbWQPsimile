@@ -18,5 +18,5 @@ env_lugano.json
 Dockerfile-snap
 README-SNAP.txt
 
-notebooks\src\python\gefolki
-notebooks\src\python\gefolki.rar
+notebooks/src/python/gefolki
+notebooks/src/python/gefolki.rar
