@@ -5,7 +5,11 @@ notebooks/meteo/2020.csv
 notebooks/meteo/2021.csv
 notebooks/meteo/2022.csv
 notebooks/in/
+notebooks/test
 out
+
+env_como_maggiore.json
+env_lugano.json
 
 .env
 

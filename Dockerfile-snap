@@ -48,14 +48,14 @@ RUN python3.6 -m pip install --upgrade pip
 RUN python3.6 -m pip install --no-cache-dir --upgrade -r /tmp/base_requirements.txt
 
 # Install snaphu
-# RUN wget --no-check-certificate  \
-#     https://web.stanford.edu/group/radar/softwareandlinks/sw/snaphu/snaphu-v2.0.5.tar.gz \
-#     && tar -xvf snaphu-v2.0.5.tar.gz \
-#     && rm snaphu-v2.0.5.tar.gz \
-#     && mkdir -p /usr/local/man/man1/ \
-#     && cd ./snaphu-v2.0.5/src \
-#     && make install \
-#     && make Clean
+RUN wget --no-check-certificate  \
+    https://web.stanford.edu/group/radar/softwareandlinks/sw/snaphu/snaphu-v2.0.5.tar.gz \
+    && tar -xvf snaphu-v2.0.5.tar.gz \
+    && rm snaphu-v2.0.5.tar.gz \
+    && mkdir -p /usr/local/man/man1/ \
+    && cd ./snaphu-v2.0.5/src \
+    && make install \
+    && make Clean
 
 # Install GDAL
 RUN apt-get update &&\
@@ -87,11 +87,11 @@ RUN conda install -c conda-forge nb_conda_kernels ipykernel
 ###################################
 
 # Create SNAP processing env
-RUN conda create --yes -c conda-forge -n snapEnv python=3.6 gdal=2.4 rasterio \
-    requests pandas geopandas ipywidgets ipykernel
+# RUN conda create --yes -c conda-forge -n snapEnv python=3.6 gdal=2.4 rasterio \
+#     requests pandas geopandas ipywidgets ipykernel lxml beautifulsoup4 selenium
 
-# COPY ./environment.yml ./environment.yml
-# RUN conda env create -f environment.yml
+COPY ./environment.yml ./environment.yml
+RUN conda env create -f environment.yml
 
 # Add the environment to the kernels of jupyterlab
 # RUN python -m ipykernel install --name snapEnv --display-name "Python (snapEnv)"

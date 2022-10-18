@@ -26,6 +26,7 @@ COPY setup/requirements.txt /tmp/base_requirements.txt
 # only pulling the image from DockerHub is needed then
 ## This line results in an infinite loop, better use the .sh
 # RUN /usr/local/snap/bin/snap --nosplash --nogui --modules --refresh --update-all
+# RUN /usr/local/snap/bin/snap --nosplash --nogui --modules --refresh org.esa.s3tbx.s3tbx.landsat.reader org.esa.s3tbx.s3tbx.c2rcc
 ## When not running behind a firewall, uncomment the next two lines
 
 # Uncomment the following lines if required to update snap
@@ -77,12 +78,12 @@ RUN conda install -c conda-forge nb_conda_kernels ipykernel
 
 # Create SNAP processing env
 COPY ./packages ./packages
-RUN conda env create -f packages/environment-test.yml
+RUN conda env create -f packages/environment.yml
 
 # Add the environment to the kernels of jupyterlab
 SHELL ["conda","run","-n","snapEnv","/bin/bash","-c"]
 RUN python -m ipykernel install --name snapEnv --display-name "snapEnv (Python)"
-RUN pip install -U -r packages/requirements-test.txt
+RUN pip install -U -r packages/requirements.txt
 RUN rm -rf packages
 
 
