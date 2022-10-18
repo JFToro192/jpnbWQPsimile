@@ -1,7 +1,7 @@
 WQP maps processing
 ===================
 
-The docker composition presented in this repository aims to support the continued production of the Water Quality Parameters (WQPs) maps for the SIMILE project. The build of the image base in the `mundialis/esa-snap:ubuntu` latest image, and set up multiple python libraries to enable the creation of an interactive environment for processing satellite images.
+The docker composition presented in this repository aims to support the continued production of the Water Quality Parameters (WQPs) maps for the SIMILE project. The build of the image base in the `mundialis/esa-snap:8.0-ubuntu` latest image, and set up multiple python libraries to enable the creation of an interactive environment for processing satellite images.
 
 -------------------
 ## Requirements
@@ -63,8 +63,6 @@ jpbnWQPsimile
 ```
 
 3. Build the VM docker container.
-
-Current base image for `mundialis/esa-snap:8.0-ubuntu`
 
 ```
 # Build the Image
