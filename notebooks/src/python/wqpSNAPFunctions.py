@@ -91,7 +91,18 @@ def inputParameters(sensor_input, sensor_output):
             'out_wqp_mid_high_clouds':os.path.join(sensor_output,'wqp_mid_high_clouds'),
             'in_parameters': f'./in/satellite_imagery/wqp_parameters',
             'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
-        }        
+        }  
+        
+    elif sensor=='EUMETSAT':
+        cwd_path = {
+            'in':sensor_input,
+            'out':sensor_output,
+            'out_chl_nn':os.path.join(sensor_output,'chl_nn'),
+            'out_chl_oc4me':os.path.join(sensor_output,'chl_oc4me'),
+            'out_tsm_nn':os.path.join(sensor_output,'tsm_nn'),
+            'in_parameters': f'./in/satellite_imagery/wqp_parameters',
+            'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
+        }  
 
     return cwd_path
 

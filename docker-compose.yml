@@ -1,10 +1,10 @@
 version: "3.7"
 services:
-  datascience-demo:
-    image: jftoro/wqp_vm:1.0
-    # build: 
-    #   context: .
-    #   dockerfile: Dockerfile
+  wqp_vm:
+    # image: jftoro/wqp_vm:1.0
+    build: 
+      context: .
+      dockerfile: Dockerfile
     environment:
       - JUPYTER_TOKEN=${JUPYTER_TOKEN}
     volumes:
@@ -12,6 +12,6 @@ services:
       - ${DATA_DIR}:/home/jovyan/work
     ports:
       - ${JUPYTER_PORT}:8888
-    container_name: datascience-demo-snap
+    container_name: wqp_vm
   # TODO: Create a separate service for the documentation
   
