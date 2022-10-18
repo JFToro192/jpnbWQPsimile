@@ -64,6 +64,8 @@ jpbnWQPsimile
 
 3. Build the VM docker container.
 
+Current base image for `mundialis/esa-snap:8.0-ubuntu`
+
 ```
 # Build the Image
 docker-compose build
