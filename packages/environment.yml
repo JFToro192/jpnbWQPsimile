@@ -15,10 +15,11 @@ dependencies:
   - beautifulsoup4=4.11.1=pyha770c72_0
   - bleach=5.0.1=pyhd8ed1ab_0
   - boost-cpp=1.72.0=h8e57a91_0
+  - branca=0.5.0=pyhd8ed1ab_0
   - brotlipy=0.7.0=py36h8f6f2f9_1001
   - bzip2=1.0.8=h7f98852_4
   - c-ares=1.18.1=h7f98852_0
-  - ca-certificates=2022.6.15.1=ha878542_0
+  - ca-certificates=2022.9.24=ha878542_0
   - cairo=1.16.0=hcf35c78_1003
   - certifi=2021.5.30=py36h5fab9bb_0
   - cffi=1.14.6=py36hd8eec40_1
@@ -38,12 +39,15 @@ dependencies:
   - entrypoints=0.4=pyhd8ed1ab_0
   - expat=2.4.8=h27087fc_0
   - fiona=1.8.9.post2=py36hdff7cfa_0
+  - folium=0.12.1.post1=pyhd8ed1ab_1
   - fontconfig=2.14.0=h8e229c2_0
   - freetype=2.12.1=hca18f0e_0
   - freexl=1.0.6=h7f98852_0
   - gdal=2.4.4=py36hbb8311d_1
+  - geographiclib=1.52=pyhd8ed1ab_0
   - geopandas=0.9.0=pyhd8ed1ab_1
   - geopandas-base=0.9.0=pyhd8ed1ab_1
+  - geopy=2.2.0=pyhd8ed1ab_0
   - geos=3.8.1=he1b5a44_0
   - geotiff=1.5.1=h05acad5_10
   - gettext=0.19.8.1=h73d1719_1008
@@ -117,7 +121,9 @@ dependencies:
   - matplotlib=3.2.2=1
   - matplotlib-base=3.2.2=py36hb8e4980_0
   - matplotlib-scalebar=0.7.2=pyh44b312d_0
+  - mercantile=1.2.1=pyhd8ed1ab_0
   - mistune=0.8.4=py36h8f6f2f9_1004
+  - mpld3=0.5.8=pyhd8ed1ab_0
   - munch=2.5.0=py_0
   - nbclient=0.5.9=pyhd8ed1ab_0
   - nbconvert=6.0.7=py36h5fab9bb_3
@@ -159,6 +165,7 @@ dependencies:
   - pysocks=1.7.1=py36h5fab9bb_3
   - python=3.6.15=hb7a2778_0_cpython
   - python-dateutil=2.8.2=pyhd8ed1ab_0
+  - python-dotenv=0.21.0=pyhd8ed1ab_0
   - python_abi=3.6=2_cp36m
   - pytz=2022.2.1=pyhd8ed1ab_0
   - pywavelets=1.1.1=py36he33b4a0_3
@@ -192,6 +199,7 @@ dependencies:
   - toolz=0.12.0=pyhd8ed1ab_0
   - tornado=6.1=py36h8f6f2f9_1
   - traitlets=4.3.3=pyhd8ed1ab_2
+  - traittypes=0.2.1=pyh9f0ad1d_2
   - typing_extensions=4.1.1=pyha770c72_0
   - tzcode=2022c=h166bdaf_0
   - urllib3=1.26.11=pyhd8ed1ab_0
@@ -211,10 +219,10 @@ dependencies:
   - xorg-renderproto=0.11.1=h7f98852_1002
   - xorg-xextproto=7.3.0=h7f98852_1002
   - xorg-xproto=7.0.31=h7f98852_1007
+  - xyzservices=2021.11.0=pyhd8ed1ab_0
   - xz=5.2.6=h166bdaf_0
   - yaml=0.2.5=h7f98852_2
   - zeromq=4.3.4=h9c3ff4c_1
   - zipp=3.6.0=pyhd8ed1ab_0
   - zlib=1.2.12=h166bdaf_2
   - zstd=1.5.2=h6239696_4
-prefix: /root/miniconda3/envs/snapEnv
