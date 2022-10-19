@@ -7,29 +7,89 @@ import requests
 import json
 
 class istSOSClient:
-    WQP_PROCEDURES = ['CHL','TURB','TEMP']
+    WQP_PROCEDURES = ['CHL','CHL_1Q','TURB','TEMP']
     HEADERS = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
     OFFERING_NAME = "temporary"
     PROCEDURES = {
         'COMO': [
+            # CHL & TSM MEAN
             'SATELLITE_CHL_TURB_CO_EAST',
             'SATELLITE_CHL_TURB_CO_NORTH',
             'SATELLITE_CHL_TURB_CO_WEST',
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_CO_EAST_1Q',
+            'SATELLITE_CHL_TURB_CO_NORTH_1Q',
+            'SATELLITE_CHL_TURB_CO_WEST_1Q',
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_CO_EAST_3Q',
+            'SATELLITE_CHL_TURB_CO_NORTH_3Q',
+            'SATELLITE_CHL_TURB_CO_WEST_3Q',
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_CO_EAST_SD',
+            'SATELLITE_CHL_TURB_CO_NORTH_SD',
+            'SATELLITE_CHL_TURB_CO_WEST_SD',
+            # LSWT MEAN
             'SATELLITE_TEMP_CO_EAST',
             'SATELLITE_TEMP_CO_NORTH',
             'SATELLITE_TEMP_CO_WEST',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_CO_EAST_1Q',
+            'SATELLITE_TEMP_CO_NORTH_1Q',
+            'SATELLITE_TEMP_CO_WEST_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_CO_EAST_3Q',
+            'SATELLITE_TEMP_CO_NORTH_3Q',
+            'SATELLITE_TEMP_CO_WEST_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_CO_EAST_SD',
+            'SATELLITE_TEMP_CO_NORTH_SD',
+            'SATELLITE_TEMP_CO_WEST_SD',
         ],
         'LUGANO': [
+            # CHL & TSM MEAN
             'SATELLITE_CHL_TURB_LUG_NORTH',
             'SATELLITE_CHL_TURB_LUG_SOUTH',
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_LUG_NORTH_1Q',
+            'SATELLITE_CHL_TURB_LUG_SOUTH_1Q',
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_LUG_NORTH_3Q',
+            'SATELLITE_CHL_TURB_LUG_SOUTH_3Q',
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_LUG_NORTH_SD',
+            'SATELLITE_CHL_TURB_LUG_SOUTH_SD',
+            # LSWT MEAN
             'SATELLITE_TEMP_LUG_NORTH',
-            'SATELLITE_TEMP_LUG_SOUTH'
+            'SATELLITE_TEMP_LUG_SOUTH',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_LUG_NORTH_1Q',
+            'SATELLITE_TEMP_LUG_SOUTH_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_LUG_NORTH_3Q',
+            'SATELLITE_TEMP_LUG_SOUTH_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_LUG_NORTH_SD',
+            'SATELLITE_TEMP_LUG_SOUTH_SD'     
         ],
         'MAGGIORE': [
+            # CHL & TSM MEAN
             'SATELLITE_CHL_TURB_MA', 
-            'SATELLITE_TEMP_MA'
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_MA_1Q', 
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_MA_3Q', 
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_MA_SD', 
+            # LSWT MEAN
+            'SATELLITE_TEMP_MA',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_MA_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_MA_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_MA_SD',
         ]
     }
 
@@ -38,21 +98,78 @@ class istSOSClient:
             "name": "Time",
             "definition": "urn:ogc:def:parameter:x-istsos:1.0:time:iso8601"       
         },
+        # CHL MEAN
         "CHL":{
             "name": "water-Chl-a",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:Chl:a",
             "uom":"mg/m^3"
         },
+        # CHL 1ST QUANTILE
+        "CHL_1Q":{
+            "name": "water-Chl-a",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:Chl:a",
+            "uom":"mg/m^3"
+        },
+        # CHL 3RD QUANTILE
+        "CHL_3Q":{
+            "name": "water-Chl-a",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:Chl:a",
+            "uom":"mg/m^3"
+        },
+        # CHL STANDARD DEVIATION
+        "CHL_SD":{
+            "name": "water-Chl-a",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:Chl:a",
+            "uom":"mg/m^3"
+        },
+        # TSM MEAN
         "TURB":{
             "name": "water-TSS",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:TSS",
             "uom":"g/m^3" 
         },
+        # TSM 1ST QUANTILE
+        "TURB_1Q":{
+            "name": "water-TSS",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:TSS",
+            "uom":"g/m^3" 
+        },
+        # TSM 3RD QUANTILE
+        "TURB_3Q":{
+            "name": "water-TSS",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:TSS",
+            "uom":"g/m^3" 
+        },
+        # TSM STANDARD DEVIATION
+        "TURB_SD":{
+            "name": "water-TSS",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:TSS",
+            "uom":"g/m^3" 
+        },
+        # LSWT MEAN
         "TEMP":{
             "name": "water-temperature",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:temperature",
             "uom":"\u00b0C"    
-        }    
+        },    
+        # LSWT 1ST QUANTILE
+        "TEMP_1Q":{
+            "name": "water-temperature",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:temperature",
+            "uom":"\u00b0C"    
+        },  
+        # LSWT 3RD QUANTILE
+        "TEMP_3Q":{
+            "name": "water-temperature",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:temperature",
+            "uom":"\u00b0C"    
+        },  
+        # LSWT STANDARD DEVIATION
+        "TEMP_SD":{
+            "name": "water-temperature",
+            "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:temperature",
+            "uom":"\u00b0C"    
+        }
     }
     
     def __init__(self, HOST, HEADERS, SERVICE, PROCEDURE_LAKE, ENV_FILE):
@@ -178,12 +295,14 @@ def resultsWQPvalues(df, WQP_INPUT, BASIN):
         temp = [pytz.utc.localize(pd.to_datetime(d)).isoformat().replace('+00:00','Z')]
         for wqp in wqps: 
             try:
-                o = df.loc[(df['date']==d)&(df['typology']==wqp)].iloc[0][f'mean_{BASIN}']
-                temp.append(o)
+                for statistic in ['min','percentile_25','percentile_75','std']:
+                    o = df.loc[(df['date']==d)&(df['typology']==wqp)].iloc[0][f'{statistic}_{BASIN}']
+                    temp.append(o)
             except:
                 print('Missing value:', d,':',wqp,':',BASIN)
-        if (len(temp)==len(wqps)+1):
-            RES_DA_VALUES.append(temp)
+        
+        RES_DA_VALUES.append(temp)
+                
     return RES_DA_VALUES
 
 #
