@@ -38,7 +38,9 @@ class wqp:
         elif (self.sensor in ['L8']):
             date_format = "%Y%m%d"
             if name.split('_')[-2] != 'Oa':
-                self.date = datetime.strptime(name.split('_')[-2], date_format)        
+                self.date = datetime.strptime(name.split('_')[-2], date_format)  
+                self.typology = name.split('_')[1]
+                self.crs = name.split('_')[2]
     
     # Read the datasets using rasterio
     def readWQP(self):

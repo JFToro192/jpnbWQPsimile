@@ -14,22 +14,82 @@ class istSOSClient:
     OFFERING_NAME = "temporary"
     PROCEDURES = {
         'COMO': [
-            'SATELLITE_CHL_TURB_CO_EAST',
-            'SATELLITE_CHL_TURB_CO_NORTH',
-            'SATELLITE_CHL_TURB_CO_WEST',
-            'SATELLITE_TEMP_CO_EAST',
-            'SATELLITE_TEMP_CO_NORTH',
-            'SATELLITE_TEMP_CO_WEST',
+            # CHL & TSM MEAN
+            'SATELLITE_CHL_TURB_CO_E',
+            'SATELLITE_CHL_TURB_CO_N',
+            'SATELLITE_CHL_TURB_CO_W',
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_CO_E_1Q',
+            'SATELLITE_CHL_TURB_CO_N_1Q',
+            'SATELLITE_CHL_TURB_CO_W_1Q',
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_CO_E_3Q',
+            'SATELLITE_CHL_TURB_CO_N_3Q',
+            'SATELLITE_CHL_TURB_CO_W_3Q',
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_CO_E_SD',
+            'SATELLITE_CHL_TURB_CO_N_SD',
+            'SATELLITE_CHL_TURB_CO_W_SD',
+            # LSWT MEAN
+            'SATELLITE_TEMP_CO_E',
+            'SATELLITE_TEMP_CO_N',
+            'SATELLITE_TEMP_CO_W',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_CO_E_1Q',
+            'SATELLITE_TEMP_CO_N_1Q',
+            'SATELLITE_TEMP_CO_W_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_CO_E_3Q',
+            'SATELLITE_TEMP_CO_N_3Q',
+            'SATELLITE_TEMP_CO_W_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_CO_E_SD',
+            'SATELLITE_TEMP_CO_N_SD',
+            'SATELLITE_TEMP_CO_W_SD',
         ],
         'LUGANO': [
-            'SATELLITE_CHL_TURB_LUG_NORTH',
-            'SATELLITE_CHL_TURB_LUG_SOUTH',
-            'SATELLITE_TEMP_LUG_NORTH',
-            'SATELLITE_TEMP_LUG_SOUTH'
+            # CHL & TSM MEAN
+            'SATELLITE_CHL_TURB_LUG_N',
+            'SATELLITE_CHL_TURB_LUG_S',
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_LUG_N_1Q',
+            'SATELLITE_CHL_TURB_LUG_S_1Q',
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_LUG_N_3Q',
+            'SATELLITE_CHL_TURB_LUG_S_3Q',
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_LUG_N_SD',
+            'SATELLITE_CHL_TURB_LUG_S_SD',
+            # LSWT MEAN
+            'SATELLITE_TEMP_LUG_N',
+            'SATELLITE_TEMP_LUG_S',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_LUG_N_1Q',
+            'SATELLITE_TEMP_LUG_S_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_LUG_N_3Q',
+            'SATELLITE_TEMP_LUG_S_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_LUG_N_SD',
+            'SATELLITE_TEMP_LUG_S_SD'     
         ],
         'MAGGIORE': [
+            # CHL & TSM MEAN
             'SATELLITE_CHL_TURB_MA', 
-            'SATELLITE_TEMP_MA'
+            # CHL & TSM 1ST QUANTILE
+            'SATELLITE_CHL_TURB_MA_1Q', 
+            # CHL & TSM 3RD QUANTILE
+            'SATELLITE_CHL_TURB_MA_3Q', 
+            # CHL & TSM STANDARD DEVIATION
+            'SATELLITE_CHL_TURB_MA_SD', 
+            # LSWT MEAN
+            'SATELLITE_TEMP_MA',
+            # LSWT 1ST QUANTILE
+            'SATELLITE_TEMP_MA_1Q',
+            # LSWT 3RD QUANTILE
+            'SATELLITE_TEMP_MA_3Q',
+            # LSWT STANDARD DEVIATION
+            'SATELLITE_TEMP_MA_SD',
         ]
     }
 
@@ -41,18 +101,18 @@ class istSOSClient:
         "CHL":{
             "name": "water-Chl-a",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:Chl:a",
-            "uom":"mg/m^3"
+            "uom":"mg/m3"
         },
         "TURB":{
             "name": "water-TSS",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:TSS",
-            "uom":"g/m^3" 
+            "uom":"g/m3" 
         },
         "TEMP":{
             "name": "water-temperature",
             "definition":"urn:ogc:def:parameter:x-istsos:1.0:water:temperature",
             "uom":"\u00b0C"    
-        }    
+        },
     }
     
     def __init__(self, HOST, HEADERS, SERVICE, PROCEDURE_LAKE, ENV_FILE):
@@ -108,7 +168,7 @@ class istSOSClient:
         
         return data
     
-def updateDataRequest(df, dataSample, WQP_DEFINITIONS, WQP_PROCEDURES, PROCEDURE):
+def updateDataRequest(df, dataSample, WQP_DEFINITIONS, WQP_PROCEDURES, PROCEDURE, STATISTIC):
     d = dataSample
     wqps = list(set(PROCEDURE.split('_')).intersection(WQP_PROCEDURES))
     print(wqps)
@@ -137,7 +197,18 @@ def updateDataRequest(df, dataSample, WQP_DEFINITIONS, WQP_PROCEDURES, PROCEDURE
         RES_DA_FIELDS.append(WQP_DEFINITIONS[wqp])
     d['result']['DataArray']['field'] = RES_DA_FIELDS
     
-    d['result']['DataArray']['values'] = resultsWQPvalues(df, wqps,'_'.join(PROCEDURE.split('_')[-2:]))
+    if STATISTIC == 'mean':
+        if 'MA' in PROCEDURE.split('_'):
+            BASIN = 'MA'
+        else:
+            BASIN = '_'.join(PROCEDURE.split('_')[-2:])
+    elif STATISTIC in ['percentile_25','percentile_75','std']:
+        if 'MA' in PROCEDURE.split('_'):
+            BASIN = 'MA'
+        else:
+            BASIN = '_'.join(PROCEDURE.split('_')[-3:-1])
+    
+    d['result']['DataArray']['values'] = resultsWQPvalues(df, wqps, BASIN, STATISTIC)
 
     return d
         
@@ -162,7 +233,7 @@ def getGMLfeature(vector_path, procedure):
     geometry_procedure = lines.split('<ogr:geometryProperty>')[1].split("</ogr:geometryProperty>")[0]
     return geometry_procedure
 
-def resultsWQPvalues(df, WQP_INPUT, BASIN):
+def resultsWQPvalues(df, WQP_INPUT, BASIN, STATISTIC):
     RES_DA_VALUES = []
     wqps = []
     for k in WQP_INPUT:
@@ -170,7 +241,7 @@ def resultsWQPvalues(df, WQP_INPUT, BASIN):
             wqps.append('CHL')
         elif k == 'TURB':
             wqps.append('TSM')
-        elif k == 'WT':
+        elif k == 'TEMP':
             wqps.append('LSWT')     
     df = df.loc[df['typology'].isin(wqps)]
     dates_list = df['date'].unique()
@@ -178,12 +249,13 @@ def resultsWQPvalues(df, WQP_INPUT, BASIN):
         temp = [pytz.utc.localize(pd.to_datetime(d)).isoformat().replace('+00:00','Z')]
         for wqp in wqps: 
             try:
-                o = df.loc[(df['date']==d)&(df['typology']==wqp)].iloc[0][f'mean_{BASIN}']
+                o = df.loc[(df['date']==d)&(df['typology']==wqp)].iloc[0][f'{STATISTIC}_{BASIN}']
                 temp.append(o)
             except:
                 print('Missing value:', d,':',wqp,':',BASIN)
-        if (len(temp)==len(wqps)+1):
-            RES_DA_VALUES.append(temp)
+        
+        RES_DA_VALUES.append(temp)
+                
     return RES_DA_VALUES
 
 #
