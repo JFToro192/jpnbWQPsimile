@@ -79,7 +79,7 @@ def inputParameters(sensor_input, sensor_output):
             'out_wqp_cloud':os.path.join(sensor_output,'wqp_cloud_mask'),
             'out_wqp_no_mask':os.path.join(sensor_output,'wqp_no_mask'),
             'in_parameters': f'./in/satellite_imagery/wqp_parameters',
-            'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
+            'vectorFile':'./vector/simile_laghi/como_maggiore_lugano_varese.shp',
         }
     elif sensor=='L8':
         cwd_path = {

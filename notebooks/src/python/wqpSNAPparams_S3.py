@@ -1,5 +1,5 @@
 cwd_path = {
-    'vectorFile':'./vector/simile_laghi/simile_laghi.shp',
+    'vectorFile':'./vector/simile_laghi/como_lugano_maggiore_varese.shp',
 }
 
 """
@@ -94,12 +94,12 @@ params_bandMaths = [
                 {
                     'name' : 'chl',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
                 },
                 {
                     'name' : 'tsm',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
                 },
                 {
                     'name' : 'chl_no_clip',
@@ -134,12 +134,12 @@ params_bandMaths = [
                 {
                     'name' : 'chl_b15ok',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
                 },
                 {
                     'name' : 'tsm_b15ok',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
                 },
                 {
                     'name' : 'rtoa_15',
@@ -149,22 +149,22 @@ params_bandMaths = [
                 {
                     'name' : 'chl_threshold_lower',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('conc_chl'>0) and ('conc_chl'<=15) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('conc_chl'>0) and ('conc_chl'<=15) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
                 },
                 {
                     'name' : 'tsm_threshold_lower',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
                 },
                 {
                     'name' : 'chl_threshold',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_chl') else NaN",
                 },
                 {
                     'name' : 'tsm_threshold',
                     'type' : 'float32',
-                    'expression' : "if simile_laghi and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
+                    'expression' : "if como_lugano_maggiore_varese and ('conc_chl'>0) and ('rtoa_15'<0.04) and not (Cloud_risk or Rtosa_OOS or Rtosa_OOR or Rhow_OOR) then ('conc_tsm') else NaN",
                 },
             ]
         }
