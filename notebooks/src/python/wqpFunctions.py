@@ -303,7 +303,7 @@ class wqp:
     def mergeRasterCollectionsExport(self, raster_collection, out_path):
         if (len(raster_collection)>0):
             raster_col_lst = []
-            for x in ['Lugano','Como','Maggiore']:
+            for x in ['Varese','Lugano','Como','Maggiore']:
                 if x in list(raster_collection.keys()):
                     raster_col_lst.append(raster_collection[x])
             merged, transf = merge(raster_col_lst)
