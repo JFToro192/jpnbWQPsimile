@@ -1,5 +1,16 @@
+
+
 setup/secrets_API.txt
 setup/secrets.json
+
+notebooks/Untitled.ipynb
+notebooks/cleanProducts.ipynb
+notebooks/cropByproducts.ipynb
+notebooks/extra/
+notebooks/figs/
+notebooks/outliersDistribution.ipynb
+notebooks/outliersStats.ipynb
+notebooks/temp/
 notebooks/meteo/2019.csv
 notebooks/meteo/2020.csv
 notebooks/meteo/2021.csv
@@ -20,3 +31,5 @@ README-SNAP.txt
 
 notebooks/src/python/gefolki
 notebooks/src/python/gefolki.rar
+
+istsos.zip

@@ -178,6 +178,29 @@ class wqp:
 
         with rasterio.open(out_path, 'w', **profile) as dst:
             dst.write_band(1, self.crops[NameFeature]['crop'][band-1])
+    
+    
+    def saveMaskedImageMultiband(self,out_path,NameFeature):
+        n_bands = self.crops[NameFeature]['crop'].shape[0]
+        arr_bands = np.linspace(1,n_bands,n_bands)
+        profile = self.image.profile.copy()
+        if n_bands == 1:
+            count = 1
+        else:
+            count = self.crops[NameFeature]['crop'].shape[1]
+        profile.update({
+                'dtype': 'float32',
+                'height': self.crops[NameFeature]['crop'][0].shape[0],
+                'width': self.crops[NameFeature]['crop'][0].shape[1],
+                'count': count,
+                'transform': self.crops[NameFeature]['transform']
+            })  
+
+        with rasterio.open(out_path, 'w', **profile) as dst:
+            if n_bands == 1:
+                dst.write_band(1, self.crops[NameFeature]['crop'][0])
+            else:
+                dst.write(self.crops[NameFeature]['crop'],arr_bands)
         
     """
     IMPORT THE INDEPENDENT LAYERS FOR THE LAKES
